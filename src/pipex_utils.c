@@ -6,7 +6,7 @@
 /*   By: asaux <asaux@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 13:26:15 by asaux             #+#    #+#             */
-/*   Updated: 2024/04/11 17:01:35 by asaux            ###   ########.fr       */
+/*   Updated: 2024/05/14 13:46:55 by asaux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	free_array(char **array)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!array)
-		return;
+		return ;
 	while (array[i])
 		free(array[i++]);
 	free(array);
@@ -26,9 +26,9 @@ void	free_array(char **array)
 
 void	execute(char *av, char **env)
 {
-	t_path *path;
+	t_path	*path;
 	char	*pathfind;
-	char 	**cmd;
+	char	**cmd;
 
 	path = malloc(sizeof(t_path));
 	pathfind = get_path(av, env, path);

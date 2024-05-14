@@ -6,13 +6,13 @@
 /*   By: asaux <asaux@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 03:04:02 by asaux             #+#    #+#             */
-/*   Updated: 2024/04/11 17:03:30 by asaux            ###   ########.fr       */
+/*   Updated: 2024/05/14 13:46:00 by asaux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-char *extract_path(char **env)
+char	*extract_path(char **env)
 {
 	int	i;
 
@@ -26,7 +26,7 @@ char *extract_path(char **env)
 	return (NULL);
 }
 
-char *get_path(char *cmd, char **env, t_path *path)
+char	*get_path(char *cmd, char **env, t_path *path)
 {
 	int	i;
 
@@ -39,11 +39,11 @@ char *get_path(char *cmd, char **env, t_path *path)
 		path->goodpath = ft_strjoin(path->subpath, path->cmds[0]);
 		free(path->subpath);
 		if (access(path->goodpath, F_OK | X_OK) == 0)
-			{
-				free_array(path->allpaths);
-				free_array(path->cmds);
-				return (path->goodpath);
-			}
+		{
+			free_array(path->allpaths);
+			free_array(path->cmds);
+			return (path->goodpath);
+		}
 		free(path->goodpath);
 	}
 	free_array(path->allpaths);
@@ -53,8 +53,8 @@ char *get_path(char *cmd, char **env, t_path *path)
 
 void	child_process(char **av, int *fd, char **env)
 {
-	int file;
-	
+	int	file;
+
 	file = open(av[1], O_RDONLY, 0777);
 	if (file == -1)
 	{
@@ -71,7 +71,7 @@ void	child_process(char **av, int *fd, char **env)
 
 void	parent_process(char **av, int *fd, char **env)
 {
-	int file;
+	int	file;
 
 	file = open(av[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (file == -1)
@@ -87,7 +87,7 @@ void	parent_process(char **av, int *fd, char **env)
 	execute(av[3], env);
 }
 
-int main(int ac, char **av, char **env)
+int	main(int ac, char **av, char **env)
 {
 	pid_t	pid;
 	int		fd[2];
